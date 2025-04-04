@@ -1,0 +1,25 @@
+name: Cybersecurity Chatbot CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.201' # or whatever .NET version you're using
+
+      - name: Install Dependencies
+        run: |
+          # If you have any specific package installation requirements, add them here
+          # For example, running `dotnet restore` if your project needs to restore NuGet packages
+          dotnet restore
+
+      - name: Run Syntax Check
+        run: dotnet build .
